@@ -1,4 +1,4 @@
-module spi_master (
+module SPI_MASTER (
     input wire clk,       // System clock
     input wire reset,     // System reset
     input wire [7:0] data_in, // Data to be sent
