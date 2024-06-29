@@ -15,6 +15,15 @@ SPI is a synchronous serial communication protocol used for short-distance commu
 
 ![Introduction-to-SPI-Master-and-Slave](https://github.com/monil667/SPI_PROTOCOL_VERILOG/assets/136303932/3e9ad12e-5eeb-47fa-8af7-1f2d580ab588)
 
+The SPI interface defines no protocol for data exchange, limiting overhead and allowing for high speed data streaming. Clock polarity (CPOL) and clock phase (CPHA) can be specified as ‘0’ or ‘1’ to form four unique modes to provide flexibility in communication between master and slave as shown in Figure.
+
+![SPI-bus-timing](https://github.com/monil667/SPI_PROTOCOL_VERILOG/assets/136303932/89e16c79-de8a-4d59-bd8b-1c2073efc839)
+
+SPI Modes:
+
+![SPI MODES](https://github.com/monil667/SPI_PROTOCOL_VERILOG/assets/136303932/08ad64d4-5ab2-492c-9897-c950adace42a)
+
+
 
 **Module Description**  
 
