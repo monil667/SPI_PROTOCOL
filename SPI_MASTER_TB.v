@@ -1,89 +1,68 @@
-module tb_spi_master;
+module SPI_MASTER_TB;
 
-    // Test bench signals
+    // Testbench signals
     reg clk;
-    reg rst_n;
+    reg reset;
     reg [7:0] data_in;
-    reg start;
     wire [7:0] data_out;
-    wire spi_clk;
-    wire mosi;
-    reg miso;
-    wire cs_n;
-    reg cpol;
+    wire SCLK;
+    wire MOSI;
+    reg MISO;
+    wire SS;
+ 	reg [7:0]data_slave;
     reg cpha;
-
-    // Instantiate the SPI master module
+    reg cpol;
+  
+    // Instantiate the spi_master module
     spi_master uut (
         .clk(clk),
-        .rst_n(rst_n),
+        .reset(reset),
         .data_in(data_in),
-        .start(start),
         .data_out(data_out),
-        .spi_clk(spi_clk),
-        .mosi(mosi),
-        .miso(miso),
-        .cs_n(cs_n),
-        .cpol(cpol),
-        .cpha(cpha)
+        .SCLK(SCLK),
+        .MOSI(MOSI),
+        .MISO(MISO),
+        .SS(SS),
+        .cpha(cpha),
+        .cpol(cpol)
+        
     );
 
     // Clock generation
     initial begin
         clk = 0;
-        forever #5 clk = ~clk; // 100 MHz clock
+        forever #5 clk = ~clk; // 10ns clock period (100 MHz)
+    end
+  
+  	initial begin
+      	$dumpfile("dump.vcd");
+      $dumpvars(0,Master_tb);
     end
 
-    // Task to perform an SPI transaction
-    task perform_spi_transaction(input [7:0] send_data, input [7:0] expected_data);
-        integer i;
-        begin
-            data_in = send_data;
-            start = 1;
-            #10 start = 0;
-
-            // Provide MISO data and monitor SPI_CLK
-            for (i = 0; i < 8; i = i + 1)
-            begin
-              @(posedge spi_clk); 
-              miso <= expected_data [7-i]; 
-            //    @(posedge spi_clk); // Data is sampled on rising edge
-            end
-
-            // Wait for the transaction to complete
-            #40; // Adjust as needed based on the clock divider and bit timing
-        end
-    endtask
-
-    // Test stimulus
+    // Test procedure
     initial begin
+        integer i;
         // Initialize signals
-        rst_n = 0;
-        data_in = 8'hA5; // Example data to transmit
-        start = 0;
-        miso = 0;
+        reset = 1; // Assert reset
+        data_in = 8'b11001100; // Example data to be sent by the master
+        MISO = 0; // Initialize MISO
+        data_slave = 8'b10101010;  //data received from slave
         cpol = 0;
         cpha = 0;
-
-        // Initialize the dump file for waveform viewing
-        $dumpfile("dump.vcd");
-        $dumpvars(0, tb_spi_master);
       
-        // Reset the system
-        #20;
-        rst_n = 1;
+        #20;  
+        reset = 0; // Deassert reset
 
-        // Wait for reset to complete
-        #20;
-
-        // Test Mode 0: CPOL = 0, CPHA = 0
-        $display("Testing Mode 0: CPOL = 0, CPHA = 0");
-        cpol = 0;
-        cpha = 0;
-        perform_spi_transaction(8'hA5, 8'h5A); // Send 0xA5, expect to receive 0x5A
-
-        // End of simulation
-        #100;
-        $stop;
+        // Start SPI communication
+        // Simulate data received from slave: 8'b10101010
+        for (i=0 ; i<8 ; i=i+1)
+        begin
+          @(posedge SCLK);
+       		 MISO <= data_slave[7-i];
+        end
+		// Finish simulation
+        #50;
+        $finish;
     end
+
 endmodule
