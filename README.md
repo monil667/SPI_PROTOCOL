@@ -75,6 +75,8 @@ A clock signal with a 10 ns period (100 MHz) is generated using an initial block
 -Finish simulation.    
 
 **Waveform**  
+![SPI_MASTER_wave](https://github.com/monil667/SPI_PROTOCOL_VERILOG/assets/136303932/99783a9f-4047-41a7-b60c-1c91b76e102b)
+
 
 The waveform diagram shows the SPI communication between the master and the slave. It includes signals such as MISO, MOSI, SCLK, SS, bit_cnt, clk, data_in, data_out, reset, shift_reg, and data_slave. The waveform helps to visualize the timing and behavior of the SPI master during data transmission and reception.  
 
