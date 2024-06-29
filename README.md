@@ -13,6 +13,8 @@ SPI is a synchronous serial communication protocol used for short-distance commu
 -MISO (Master In Slave Out): Data line for data sent from the slave to the master.  
 -SS (Slave Select): Line to select the slave device.  
 
+![Introduction-to-SPI-Master-and-Slave](https://github.com/monil667/SPI_PROTOCOL_VERILOG/assets/136303932/3e9ad12e-5eeb-47fa-8af7-1f2d580ab588)
+
 
 **Module Description**  
 
@@ -42,6 +44,8 @@ _Internal Registers_
 
 -reg [3:0] bit_cnt: Bit counter to keep track of the number of bits sent/received.  
 -reg [7:0] shift_reg: Shift register to hold the data during transmission.  
+
+![bit_shift](https://github.com/monil667/SPI_PROTOCOL_VERILOG/assets/136303932/9e31943f-dac2-4075-bf50-7988f5a47114)
 
 
 **spi_master_tb.v**   
@@ -75,6 +79,7 @@ A clock signal with a 10 ns period (100 MHz) is generated using an initial block
 -Finish simulation.    
 
 **Waveform**  
+
 ![SPI_MASTER_wave](https://github.com/monil667/SPI_PROTOCOL_VERILOG/assets/136303932/99783a9f-4047-41a7-b60c-1c91b76e102b)
 
 
