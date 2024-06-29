@@ -14,71 +14,70 @@ SPI is a synchronous serial communication protocol used for short-distance commu
 -SS (Slave Select): Line to select the slave device.  
 
 
-**Module Description**
+**Module Description**  
 
-_spi_master.v_
+_spi_master.v_  
 
-The spi_master module implements the SPI master functionality. It includes:
+The spi_master module implements the SPI master functionality. It includes:  
 
--Clock and reset inputs.
--Data input to send to the slave and data output to receive from the slave.
--SPI clock (SCLK), master out slave in (MOSI), master in slave out (MISO), and slave select (SS) signals.
--Configurable clock phase (cpha) and clock polarity (cpol) for SPI communication.
+-Clock and reset inputs.  
+-Data input to send to the slave and data output to receive from the slave.  
+-SPI clock (SCLK), master out slave in (MOSI), master in slave out (MISO), and slave select (SS) signals.  
+-Configurable clock phase (cpha) and clock polarity (cpol) for SPI communication.  
 
-_Ports_
+_Ports_  
 
-input wire clk: System clock.
-input wire reset: System reset.
-input wire [7:0] data_in: Data to be sent to the slave.
-output reg [7:0] data_out: Data received from the slave.
-output reg SCLK: SPI clock.
-output reg MOSI: Master Out Slave In.
-input wire MISO: Master In Slave Out.
-output reg SS: Slave Select.
-input cpha: Clock phase.
-input cpol: Clock polarity.
-_
-Internal Registers_
+-input wire clk: System clock.  
+-input wire reset: System reset.  
+-input wire [7:0] data_in: Data to be sent to the slave.  
+-output reg [7:0] data_out: Data received from the slave.  
+-output reg SCLK: SPI clock.  
+-output reg MOSI: Master Out Slave In.  
+-input wire MISO: Master In Slave Out.  
+-output reg SS: Slave Select.  
+-input cpha: Clock phase.  
+-input cpol: Clock polarity.  
 
-reg [3:0] bit_cnt: Bit counter to keep track of the number of bits sent/received.
-reg [7:0] shift_reg: Shift register to hold the data during transmission.
+_Internal Registers_  
 
-
-**spi_master_tb.v** 
-
-The Master_tb module is a testbench used to simulate the spi_master module. It generates clock and reset signals, provides input data, and monitors the output data.
-
-_Signals_
-
-reg clk: Clock signal.
-reg reset: Reset signal.
-reg [7:0] data_in: Data to be sent to the slave.
-wire [7:0] data_out: Data received from the slave.
-wire SCLK: SPI clock.
-wire MOSI: Master Out Slave In.
-reg MISO: Master In Slave Out.
-wire SS: Slave Select.
-reg [7:0] data_slave: Data received from the slave.
-reg cpha: Clock phase.
-reg cpol: Clock polarity.
-
-**Clock Generation**
-
-A clock signal with a 10 ns period (100 MHz) is generated using an initial block.
-
-**Test Procedure**
-
-Initialize signals and assert reset.
-Set data to be sent by the master.
-Deassert reset and start SPI communication.
-Simulate data received from the slave.
-Finish simulation.
-
-**Waveform**
-
-The waveform diagram shows the SPI communication between the master and the slave. It includes signals such as MISO, MOSI, SCLK, SS, bit_cnt, clk, data_in, data_out, reset, shift_reg, and data_slave. The waveform helps to visualize the timing and behavior of the SPI master during data transmission and reception.
-
-**Conclusion**
+-reg [3:0] bit_cnt: Bit counter to keep track of the number of bits sent/received.  
+-reg [7:0] shift_reg: Shift register to hold the data during transmission.  
 
 
-This project provides a simple implementation of an SPI master in Verilog. The testbench allows for simulation and verification of the SPI communication with a slave device. The waveform visualization helps to understand the timing and behavior of the SPI signals.
+**spi_master_tb.v**   
+
+The Master_tb module is a testbench used to simulate the spi_master module. It generates clock and reset signals, provides input data, and monitors the output data.  
+
+_Signals_  
+
+-reg clk: Clock signal.  
+-reg reset: Reset signal.  
+-reg [7:0] data_in: Data to be sent to the slave.  
+-wire [7:0] data_out: Data received from the slave.  
+-wire SCLK: SPI clock.  
+-wire MOSI: Master Out Slave In.  
+-reg MISO: Master In Slave Out.  
+-wire SS: Slave Select.  
+-reg [7:0] data_slave: Data received from the slave.  
+-reg cpha: Clock phase.  
+-reg cpol: Clock polarity.  
+
+**Clock Generation**  
+
+A clock signal with a 10 ns period (100 MHz) is generated using an initial block.  
+
+**Test Procedure**  
+
+-Initialize signals and assert reset.  
+-Set data to be sent by the master.  
+-Deassert reset and start SPI communication.  
+-Simulate data received from the slave.  
+-Finish simulation.    
+
+**Waveform**  
+
+The waveform diagram shows the SPI communication between the master and the slave. It includes signals such as MISO, MOSI, SCLK, SS, bit_cnt, clk, data_in, data_out, reset, shift_reg, and data_slave. The waveform helps to visualize the timing and behavior of the SPI master during data transmission and reception.  
+
+**Conclusion**  
+
+This project provides a simple implementation of an SPI master in Verilog. The testbench allows for simulation and verification of the SPI communication with a slave device. The waveform visualization helps to understand the timing and behavior of the SPI signals.  
