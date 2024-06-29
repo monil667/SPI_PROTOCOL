@@ -1,5 +1,5 @@
 # SPI_PROTOCOL
-**Overview**
+**Overview**  
 This project implements a Serial Peripheral Interface (SPI) master module in Verilog, along with a testbench to simulate and verify its functionality. The SPI master module can communicate with an SPI slave device by sending and receiving 8-bit data.
 
 **SPI Protocol**
@@ -58,3 +58,24 @@ wire SS: Slave Select.
 reg [7:0] data_slave: Data received from the slave.
 reg cpha: Clock phase.
 reg cpol: Clock polarity.
+
+**Clock Generation**
+
+A clock signal with a 10 ns period (100 MHz) is generated using an initial block.
+
+**Test Procedure**
+
+Initialize signals and assert reset.
+Set data to be sent by the master.
+Deassert reset and start SPI communication.
+Simulate data received from the slave.
+Finish simulation.
+
+**Waveform**
+
+The waveform diagram shows the SPI communication between the master and the slave. It includes signals such as MISO, MOSI, SCLK, SS, bit_cnt, clk, data_in, data_out, reset, shift_reg, and data_slave. The waveform helps to visualize the timing and behavior of the SPI master during data transmission and reception.
+
+**Conclusion**
+
+
+This project provides a simple implementation of an SPI master in Verilog. The testbench allows for simulation and verification of the SPI communication with a slave device. The waveform visualization helps to understand the timing and behavior of the SPI signals.
