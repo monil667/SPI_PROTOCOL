@@ -19,7 +19,7 @@ The SPI interface defines no protocol for data exchange, limiting overhead and a
 
 ![SPI-bus-timing](https://github.com/monil667/SPI_PROTOCOL_VERILOG/assets/136303932/89e16c79-de8a-4d59-bd8b-1c2073efc839)
 
-SPI Modes:
+**SPI Modes:**
 
 ![SPI MODES](https://github.com/monil667/SPI_PROTOCOL_VERILOG/assets/136303932/08ad64d4-5ab2-492c-9897-c950adace42a)
 
