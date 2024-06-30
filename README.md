@@ -24,6 +24,7 @@ The SPI interface defines no protocol for data exchange, limiting overhead and a
 ![SPI MODES](https://github.com/monil667/SPI_PROTOCOL_VERILOG/assets/136303932/08ad64d4-5ab2-492c-9897-c950adace42a)
 
 **Block Diagram**
+
 ![SPI](https://github.com/monil667/SPI_PROTOCOL_VERILOG/assets/114842275/adcd5c47-0d1e-4fad-a917-08387bd6b353)
 
 
